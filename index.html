@@ -33,7 +33,7 @@
         data: {
             input: "",
             status: [],
-            lives:9
+            lives:15
         },
         computed: {
             random: function () {
@@ -63,25 +63,26 @@
                             }
                         }
                         if (!counter.includes(true)) {
-                            this.status.push("None of the numbers are correct.")
+                            this.status.push(`Your input: ${this.input}. None of the numbers are correct.`)
                         }
                         else {
                             let truthcounter = 0;
                             let halfcounter = 0;
                             let falsecounter = 0;
                             let doppelganger = this.random;
+                            let doppelganger2 = this.input
                             for (var y = 0; y < this.input.length;y++) {
-                                if (doppelganger[y] == this.input[y]) {
+                                if (doppelganger[y] == doppelganger2[y]) {
                                     truthcounter++;
                                     doppelganger = doppelganger.replace(doppelganger[y],'n')
-                                    
+                                    doppelganger2 = doppelganger2.replace(doppelganger2[y],'x')
                                 }
                                 else {
                                     continue
                                 }
                             }
                             for (var i = 0 ; i < doppelganger.length; i++) {
-                                if (doppelganger.includes(this.input[i])) {
+                                if (doppelganger2.includes(doppelganger[i])) {
                                     halfcounter++;
                                     
                                 }
@@ -89,7 +90,7 @@
                                     continue
                                 }
                             }
-                            this.status.push(`${truthcounter} number(s) is/are correct and in the right place, ${halfcounter} are correct but in wrong places.`)
+                            this.status.push(`Your input: ${this.input}. ${truthcounter} number(s) is/are correct and in the right place, ${halfcounter} are correct but in wrong places.`)
                             
                         };
                     }
