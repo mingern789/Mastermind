@@ -20,10 +20,12 @@
         <button v-on:click="submit">Submit</button>
         <h2>Chances left: {{lives}}</h2>
         <h2 style="margin-top: 20px;">Status</h2>
-        <ol v-if="!clear">
+        <ol v-if="!finished">
         <li v-for="i in status">{{i}}</li>
         </ol>
         <h2 v-if="clear">You win! Refresh to start a new game.</h2>
+        <img v-if="clear" src="https://www.washingtonpost.com/wp-apps/imrs.php?src=https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/GQBF3QZ6T46LLO3YO5GGYXSDLQ.jpg&w=300&h=276">
+        <img v-if="tried" src="https://lh3.googleusercontent.com/proxy/gKc9Oh96bhOnT91TXqXHWBZB-gEQB7hXyftxhTA8mvaM8gO75rjRBuM-NDnot1eK6j9k2QTA0bXxAOAOx7KfUQ_syC6ZxT9jDxxxSn3UsfCCGVFVgyOVumr21JgPw4j-rUNcqj-K-CSzRg2k9uHVNhakkKSOk6HSy6Q">
     </div>
 </body>
 <script>
@@ -34,7 +36,9 @@
             input: "",
             status: [],
             lives:15,
-            clear:false
+            clear:false,
+            tried:false,
+            finished:false
         },
         computed: {
             random: function () {
@@ -51,7 +55,8 @@
                 else {
                     if (this.input == this.random) {
                         alert("You cracked the code!")
-                        this.clear = true
+                        this.clear = true;
+                        this.finished = true
                     }
                     else  {
                         this.lives--;
@@ -98,7 +103,9 @@
                 }
             }
             else {
-                alert(`You have run out of chances, the answer is ${this.random}. Refresh the page to try again.`)
+                alert(`You have run out of chances, the answer is ${this.random}. Refresh the page to try again.`);
+                this.finished = true;
+                this.tried = true;
             }
             } 
 
