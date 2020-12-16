@@ -16,16 +16,16 @@
         <label>Guess the 3 digit number</label>
         <input name="somename"
             oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-            type="number" maxlength="3" v-model="input" />
+            type="number" maxlength="3" v-model="input" v-on:keyup.enter="submit"/>
         <button v-on:click="submit">Submit</button>
         <h2>Chances left: {{lives}}</h2>
-        <h2 style="margin-top: 20px;">Status</h2>
+        <h2 style="margin-top: 20px;">Status:</h2>
         <ol v-if="!finished">
         <li v-for="i in status">{{i}}</li>
         </ol>
         <h2 v-if="clear">You win! Refresh to start a new game.</h2>
         <img v-if="clear" src="https://www.washingtonpost.com/wp-apps/imrs.php?src=https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/GQBF3QZ6T46LLO3YO5GGYXSDLQ.jpg&w=300&h=276">
-        <img v-if="tried" src="https://lh3.googleusercontent.com/proxy/gKc9Oh96bhOnT91TXqXHWBZB-gEQB7hXyftxhTA8mvaM8gO75rjRBuM-NDnot1eK6j9k2QTA0bXxAOAOx7KfUQ_syC6ZxT9jDxxxSn3UsfCCGVFVgyOVumr21JgPw4j-rUNcqj-K-CSzRg2k9uHVNhakkKSOk6HSy6Q">
+        <img v-if="tried" src="./248c9549a52dac432aa01a802eb559e1.jpg">
     </div>
 </body>
 <script>
@@ -88,7 +88,7 @@
                                 }
                             }
                             for (var i = 0 ; i < doppelganger.length; i++) {
-                                if (doppelganger2.includes(doppelganger[i])) {
+                                if (doppelganger.includes(doppelganger2[i])) {
                                     halfcounter++;
                                     
                                 }
